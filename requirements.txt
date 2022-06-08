@@ -1,0 +1,4 @@
+article-parser==1.2.0
+python-slugify==6.1.2
+pypandoc==1.8.1
+

@@ -9,8 +9,7 @@ import article_parser
 
 
 class Article:
-
-    def __init__(self, url: str):
+    def __init__(self, url: str) -> None:
         """This class can fetch article from url and save parsed text in a docx format."""
         self._url = url
 
@@ -20,14 +19,13 @@ class Article:
         self._title = None
         self._md = None
 
-    def save(self, out_dir: str, out_format: str = "docx") -> None:
+    def save(self, out_dir: str = '.', out_format: str = "docx") -> None:
         """Save article to file in a specified format.
 
         Args:
             out_dir: output directory path
             out_format: output file format, check pypandoc.convert_text() documentation
                 for supported formats.
-
         """
         short_title = textwrap.shorten(self._title, 50, placeholder='')
         filename = slugify(f"{self._domain_name} {short_title}", lowercase=False) + '.' + out_format
@@ -36,7 +34,7 @@ class Article:
             self._md, out_format, outputfile=file_path, format="md"
         )
 
-    def _fix_urls(self, md):
+    def _fix_urls(self, md: str) -> str:
         for url in re.findall(r"\(https?://.*?\)", md, flags=re.S):
             fixed_url = re.sub(r"\n", '', url)
             md = md.replace(url, fixed_url)

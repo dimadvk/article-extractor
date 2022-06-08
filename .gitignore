@@ -1,4 +1,10 @@
-.idea/
-__pycache__/
+.idea
+__pycache__
 *.swp
-
+build
+dist
+*.egg-info
+.coverage
+.coverage.*
+htmlcov
+tox

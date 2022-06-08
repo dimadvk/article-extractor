@@ -35,12 +35,16 @@ class Article:
         )
 
     def _fix_urls(self, md: str) -> str:
+        """Dumb workaround.
+        Sometimes article_parser breaks image urls with newline symbol "\n".
+        """
         for url in re.findall(r"\(https?://.*?\)", md, flags=re.S):
             fixed_url = re.sub(r"\n", '', url)
             md = md.replace(url, fixed_url)
         return md
 
     def fetch(self):
+        """Download article by url"""
         self._title, md = article_parser.parse(self._url)
         self._md = self._fix_urls(md)
 

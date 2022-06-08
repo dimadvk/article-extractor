@@ -4,6 +4,9 @@ Extract article (including images) by url and save to file.
 
 ## How to install
 
+It requires [pandoc](https://pandoc.org/) to be installed.
+
+Install package with command:
 ```
 $ pip install git+https://github.com/dimadvk/article-extractor.git
 ```

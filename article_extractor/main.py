@@ -19,13 +19,16 @@ class Article:
         self._title = None
         self._md = None
 
-    def save(self, out_dir: str = '.', out_format: str = "docx") -> None:
+    def save(self, out_dir: str = '.', out_format: str = "docx") -> str:
         """Save article to file in a specified format.
 
         Args:
             out_dir: output directory path
             out_format: output file format, check pypandoc.convert_text() documentation
                 for supported formats.
+
+        Returns:
+            str: created file path
         """
         short_title = textwrap.shorten(self._title, 50, placeholder='')
         filename = slugify(f"{self._domain_name} {short_title}", lowercase=False) + '.' + out_format
@@ -33,6 +36,7 @@ class Article:
         pypandoc.convert_text(
             self._md, out_format, outputfile=file_path, format="md"
         )
+        return file_path
 
     def _fix_urls(self, md: str) -> str:
         """Dumb workaround.

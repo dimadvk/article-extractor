@@ -40,7 +40,7 @@ class Article:
 
     def _fix_urls(self, md: str) -> str:
         """Dumb workaround.
-        Sometimes article_parser breaks image urls with newline symbol "\n".
+        Sometimes article_parser breaks image urls with newline symbol "\n". This method is to fix that.
         """
         for url in re.findall(r"\(https?://.*?\)", md, flags=re.S):
             fixed_url = re.sub(r"\n", '', url)

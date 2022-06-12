@@ -9,6 +9,8 @@ import article_parser
 
 
 class Article:
+    MAX_TITLE_LENGTH = 60
+
     def __init__(self, url: str) -> None:
         """This class can fetch article from url and save parsed text in a docx format."""
         self._url = url
@@ -30,7 +32,7 @@ class Article:
         Returns:
             str: created file path
         """
-        short_title = textwrap.shorten(self._title, 50, placeholder='')
+        short_title = textwrap.shorten(self._title, self.MAX_TITLE_LENGTH, placeholder='')
         filename = slugify(f"{self._domain_name} {short_title}", lowercase=False) + '.' + out_format
         file_path = str(Path(out_dir) / filename)
         pypandoc.convert_text(

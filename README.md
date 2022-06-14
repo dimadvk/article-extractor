@@ -14,9 +14,6 @@ $ pip install git+https://github.com/dimadvk/article-extractor.git
 ## Basic Usage
 
 ```python
->>> from article_extractor import Article
->>> article = Article("https://example.com")
->>> article.fetch()
->>> article.save(out_dir='.', out_format="docx")
-
+>>> from article_extractor import extract_article
+>>> article_file_path = extract_article("https://example.com", "/tmp", "docx")
 ```
